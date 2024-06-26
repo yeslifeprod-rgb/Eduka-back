@@ -1,34 +1,18 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus, UseGuards, Put, Param } from '@nestjs/common';
+import { ProfileService } from './profile.service';
+import { UpdateModifProfileDto } from './dto/update-modifprofile.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
-import { ChangePasswordDto } from './dto/change-password-user.dto';
-import { UserService } from './user.service';
 
-@Controller('user')
+
+  @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly modifProfileService: ProfileService) { }
 
-  @Post('change-password')
-  async changePassword(@Body() changePasswordDto: ChangePasswordDto) {
-    const { userId, newPassword } = changePasswordDto;
-
-    // Vérifier si l'utilisateur existe
-    const user = await this.userService.findUserById(userId);
-    if (!user) {
-      throw new BadRequestException('Credentials not valid');
-    }
-
-    // Hacher le nouveau mot de passe
-    const hashedPassword = await this.userService.hashPassword(newPassword);
-
-    // Mettre à jour le mot de passe utilisateur
-    await this.userService.updatePassword(userId, hashedPassword);
-
-    // Retourner les informations mises à jour de l'utilisateur
-    const updatedUser = await this.userService.getUserById(userId);
-
-    return {
-      message: 'Profile updated successfully',
-      user: updatedUser,
-    };
+  @UseGuards(JwtAuthGuard)
+  @Put('update/:id')
+  async updateUserProfile(@Param('id') id: string, @Body() updateModifProfileDto: UpdateModifProfileDto) {
+    return this.modifProfileService.updateUserProfile(+id, updateModifProfileDto);
   }
 }
+
