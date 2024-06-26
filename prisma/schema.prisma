@@ -21,35 +21,38 @@ enum DisciplineName {
   PHILOSOPHIE
   BIOLOGIE
 }
+
 model Discipline {
-  id    String               @id @default(cuid())
-  name  DisciplineName
+  id                String               @id @default(cuid())
+  name              DisciplineName
   UserHasDiscipline UserHasDisciplines[]
 }
+
 model User {
-  id         String   @id @default(cuid())
-  email      String   @unique
-  password   String
-  status     UserStatus @default(CONNECTED)
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
-  profil Profile? 
-  messages Message[]
+  id                String               @id @default(cuid())
+  email             String               @unique
+  password          String
+  status            UserStatus           @default(CONNECTED)
+  created_at        DateTime             @default(now())
+  updated_at        DateTime             @default(now()) @updatedAt
+  profil            Profile?
+  messages          Message[]
   userHasDiscipline UserHasDisciplines[] //@dev pluriel
-  userHasSchool UserHasSchool[] //@dev
-  children Children[]
-  roles RoleHasUser[]
-  events Event[]
+  userHasSchool     UserHasSchool[] //@dev
+  children          Children[]
+  roles             RoleHasUser[]
+  events            Event[]
 }
+
 model Profile {
-  id         String   @id @default(cuid())
+  id         String  @id @default(cuid())
   lastname   String
   firstname  String
   photo      String
   address_id String
-  userId String @unique 
-  user       User     @relation( fields: [userId], references: [id])
-  address    Address  @relation(fields: [address_id], references: [id])
+  userId     String  @unique
+  user       User    @relation(fields: [userId], references: [id])
+  address    Address @relation(fields: [address_id], references: [id])
 }
 
 model UserHasDisciplines {
@@ -64,7 +67,7 @@ model UserHasDisciplines {
 
 model ProfilAttendanceEvent {
   event_id    String
-  status      String  // @dev ENUM 
+  status      String // @dev ENUM 
   children_id String
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
@@ -73,17 +76,16 @@ model ProfilAttendanceEvent {
   children Children @relation(fields: [children_id], references: [id])
 
   @@id([event_id, children_id])
-
 }
 
 model Message {
-  id          String   @id @default(cuid())
-  content     String
-  user_id     String
-  event_id    String
-  message_type String  // ENUM placeholder, replace with specific values if needed
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
+  id           String   @id @default(cuid())
+  content      String
+  user_id      String
+  event_id     String
+  message_type String // ENUM placeholder, replace with specific values if needed
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now()) @updatedAt
 
   user  User  @relation(fields: [user_id], references: [id])
   event Event @relation(fields: [event_id], references: [id])
@@ -106,10 +108,10 @@ model School {
   name       String
   address    Address? @relation(fields: [address_id], references: [id], onDelete: SetNull)
   address_id String?  @unique
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
-  children Children[]
+  children      Children[]
   userHasSchool UserHasSchool[]
 
   @@index([address_id], name: "school_address_id_index")
@@ -127,14 +129,14 @@ model EventHasEventTag {
 }
 
 model Address {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   address_line String
   zip_code     String
   city         String
-  school     School?
-  school_id  String?  @unique
-  profil Profile[] //@dev one to one
-  event  Event[] //@dev one to one
+  school       School?
+  school_id    String?   @unique
+  profil       Profile[] //@dev one to one
+  event        Event[] //@dev one to one
 }
 
 model RoleHasUser {
@@ -154,8 +156,8 @@ enum RoleName {
 }
 
 model Role {
-  id   String @id @default(cuid())
-  name RoleName 
+  id   String   @id @default(cuid())
+  name RoleName
 
   roleHasUser RoleHasUser[] //@dev one to one
 }
@@ -168,17 +170,17 @@ model Event {
   end_date    DateTime
   guest_limit Int
   is_public   Boolean
-  category    String  // @enum
+  category    String // @enum
   address_id  String
   user_id     String
-  status      String  // @enum
+  status      String // @enum
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
 
-  address Address @relation(fields: [address_id], references: [id])
-  user    User    @relation(fields: [user_id], references: [id])
-  messages Message[]
-  eventTags EventHasEventTag[]
+  address     Address                 @relation(fields: [address_id], references: [id])
+  user        User                    @relation(fields: [user_id], references: [id])
+  messages    Message[]
+  eventTags   EventHasEventTag[]
   attendances ProfilAttendanceEvent[]
 }
 
@@ -186,6 +188,7 @@ enum UserStatus {
   CONNECTED
   DISCONNECTED
 }
+
 enum EventTagName {
   CAGNOTTE
   SPORT
@@ -203,8 +206,8 @@ enum EventTagName {
 }
 
 model EventTag {
-  id   String        @id @default(cuid())
-  tag  EventTagName
+  id        String             @id @default(cuid())
+  tag       EventTagName
   eventTags EventHasEventTag[]
 }
 
@@ -218,8 +221,8 @@ model Children {
   created_at DateTime
   updated_at DateTime
 
-  user    User    @relation(fields: [user_id], references: [id])
-  school  School  @relation(fields: [school_id], references: [id])
+  user        User                    @relation(fields: [user_id], references: [id])
+  school      School                  @relation(fields: [school_id], references: [id])
   attendances ProfilAttendanceEvent[]
 
   @@index([user_id, school_id], name: "children_user_id_school_id_index")

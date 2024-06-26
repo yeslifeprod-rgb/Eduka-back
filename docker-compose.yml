@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    platform: linux/amd64
+    container_name: mysqleduka
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Zebi0503
+      MYSQL_DATABASE: EDUKA
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmineduka
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysqleduka
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: Zebi0503
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
