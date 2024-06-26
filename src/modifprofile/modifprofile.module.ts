@@ -12,3 +12,5 @@ import { UserController } from 'src/user/user.controller';
   controllers: [UserController], 
 })
 export class ModifProfileModule { }
+
+// Peut être à modifier ou supprimer le fichier
