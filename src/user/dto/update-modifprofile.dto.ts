@@ -1,4 +1,4 @@
-import { IsString, IsArray, ValidateNested, IsOptional } from 'class-validator';
+import { IsString, IsArray, IsOptional, ValidateNested, IsEmail, IsDateString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class ParentDto {
@@ -8,7 +8,7 @@ class ParentDto {
   @IsString()
   lastName: string;
 
-  @IsString()
+  @IsEmail()
   email: string;
 }
 
@@ -19,27 +19,27 @@ class ChildDto {
   @IsString()
   name: string;
 
-  @IsString()
+  @IsDateString()
   birthday: string;
 
   @IsString()
   class: string;
-
-  @IsOptional()
-  @IsString()
-  schoolId?: string;
 }
 
 export class UpdateModifProfileDto {
+  @IsOptional()
   @ValidateNested()
   @Type(() => ParentDto)
-  parents: ParentDto;
+  parents?: ParentDto;
 
+  @IsOptional()
+  @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ChildDto)
-  children: ChildDto[];
+  children?: ChildDto[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  disciplines: string[];
+  disciplines?: string[];
 }
