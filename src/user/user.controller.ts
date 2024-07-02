@@ -25,6 +25,11 @@ export class UserController {
   }
 
 
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete/:id')
+  async deleteUserProfile(@Param('id') id: string, @Body() updateModifProfileDto: UpdateModifProfileDto) {
+    return this.ProfileService.deleteUserProfile(+id);
+  }
 
 
 }
