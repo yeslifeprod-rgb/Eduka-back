@@ -1,4 +1,4 @@
-import { IsString, IsArray, ValidateNested, IsOptional } from 'class-validator';
+import { IsString, IsArray, ValidateNested, IsOptional, ArrayMinSize } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class ParentDto {
@@ -37,6 +37,7 @@ export class UpdateModifProfileDto {
 
   @ValidateNested({ each: true })
   @Type(() => ChildDto)
+  @ArrayMinSize(1) // Assure qu'il y a au moins un enfant
   children: ChildDto[];
 
   @IsArray()

@@ -42,27 +42,5 @@ export class ProfileService {
     return this.users[userIndex];
   }
 
-  // Récupérer le profil d'un utilisateur par ID
-  async getUserProfile(id: number) {
-    const userIndex = this.users.findIndex(user => user.id === id);
-    if (userIndex === -1) {
-      throw new NotFoundException('User not found');
-    }
-    return this.users[userIndex];
-  }
-
-
-
-// Supprimer le profil d'un utilisateur par ID
-async deleteUserProfile(id: number) {
-  const userIndex = this.users.findIndex(user => user.id === id);
-  if (userIndex === -1) {
-    throw new NotFoundException('User not found');
-  }
- // Modifie le tableau users avec splice 
-  const [deletedUser] = this.users.splice(userIndex, 1);
-  return { message: 'User deleted successfully', deletedUser };
-}
-
   
 }
