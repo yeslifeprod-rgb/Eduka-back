@@ -25,7 +25,7 @@ import { ProfileService } from './user/profile.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.DATABASE_URL_MONGODB),
+    // MongooseModule.forRoot(process.env.DATABASE_URL_MONGODB),
     ConfigModule.forRoot({
       load: [configuration],
       validationSchema,
@@ -48,7 +48,7 @@ import { ProfileService } from './user/profile.service';
     RoleModule,
     SchoolModule,
     DisciplineModule,
-    AddressModule,
+    // AddressModule,
     MessageModule,
     EventTagModule,
     AuthModule,
@@ -61,4 +61,4 @@ import { ProfileService } from './user/profile.service';
   controllers: [AppController],
   providers: [AppService, ProfileService],
 })
-export class AppModule {}
+export class AppModule { }

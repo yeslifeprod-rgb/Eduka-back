@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Prisma, RoleName, User as UserModel } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { Model } from 'mongoose';
-import { PrismaService } from 'prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ResetToken, ResetTokenDocument } from './resetToken.schema';
@@ -13,28 +13,31 @@ import { User, UserDocument } from './user.schema';
 export class UserService {
   constructor(
     private prisma: PrismaService,
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectModel(ResetToken.name)
-    private resetTokenModel: Model<ResetToken>,
-  ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    try {
-      const createdUser = new this.userModel(createUserDto);
-      return await createdUser.save();
-    } catch (error) {
-      // Gérer l'erreur ici (ex. log, lancer une exception, etc.)
-      throw new Error(`Failed to create user: ${error.message}`);
-    }
-  }
 
-  async findAll(page = 0, limit = 10): Promise<User[]> {
-    const options: any = {
-      skip: page * limit,
-      limit: limit,
-    };
-    return this.userModel.find({}, null, options);
-  }
+
+    // @InjectModel(User.name) private userModel: Model<UserDocument>,
+    // @InjectModel(ResetToken.name)
+    // private resetTokenModel: Model<ResetToken>,
+  ) { }
+
+  // async create(createUserDto: CreateUserDto): Promise<User> {
+  //   try {
+  //     const createdUser = new this.userModel(createUserDto);
+  //     return await createdUser.save();
+  //   } catch (error) {
+  //     // Gérer l'erreur ici (ex. log, lancer une exception, etc.)
+  //     throw new Error(`Failed to create user: ${error.message}`);
+  //   }
+  // }
+
+  // async findAll(page = 0, limit = 10): Promise<User[]> {
+  //   const options: any = {
+  //     skip: page * limit,
+  //     limit: limit,
+  //   };
+  //   return this.userModel.find({}, null, options);
+  // }
   // async findAll(skip?: number, take?: number): Promise<UserModel[]> {
   //   const options: any = {
   //     ...(take && { take }),
@@ -46,9 +49,13 @@ export class UserService {
     data: Prisma.UserWhereUniqueInput,
   ): Promise<UserModel | null> {
     return await this.prisma.user.findUnique({
-      where: data,
+      where: data
     });
+
   }
+
+
+
   async updateUser(
     where: Prisma.UserWhereUniqueInput,
     data: Prisma.UserUpdateInput,
@@ -56,9 +63,14 @@ export class UserService {
     return this.prisma.user.update({ where, data });
   }
 
-  async findByRefreshToken(refreshToken: string): Promise<UserModel | null> {
+  async findByRefreshToken(refreshToken: string): Promise<Partial<UserModel> | null> {
     return this.prisma.user.findFirst({
       where: { refreshToken },
+      select: {
+        id: true,
+        email: true,
+        status: true
+      }
     });
   }
   async update(id: string, data: UpdateUserDto) {
@@ -118,32 +130,33 @@ export class UserService {
 
     return roles.map((roleHasUser) => roleHasUser.role.name);
   }
-  async generateResetToken(email: string) {
-    const user = await this.prisma.user.findUnique({ where: { email } });
-    if (user) {
-      const expireDate = new Date();
-      console.log(user.id);
+  // async generateResetToken(email: string) {
+  //   const user = await this.prisma.user.findUnique({ where: { email } });
+  //   if (user) {
+  //     const expireDate = new Date();
+  //     console.log(user.id);
 
-      expireDate.setDate(expireDate.getHours() + 1);
-      console.log(
-        '🚀 ~ UserService ~ generateResetToken ~ expireDate:',
-        expireDate,
-      );
-      const crypto = require('crypto');
-      const resetToken = crypto.randomBytes(32).toString('hex'); // Générez un token de réinitialisation
+  //     expireDate.setDate(expireDate.getHours() + 1);
+  //     console.log(
+  //       '🚀 ~ UserService ~ generateResetToken ~ expireDate:',
+  //       expireDate,
+  //     );
+  //     const crypto = require('crypto');
+  //     const resetToken = crypto.randomBytes(32).toString('hex'); // Générez un token de réinitialisation
 
-      const newResetToken = new this.resetTokenModel({
-        userId: user.id,
-        token: resetToken,
-        expireDate,
-      });
+  //     const newResetToken = new this.resetTokenModel({
+  //       userId: user.id,
+  //       token: resetToken,
+  //       expireDate,
+  //     });
 
-      const savedResetToken = await newResetToken.save();
-      console.log('Saved Reset Token Document:', savedResetToken);
-      return resetToken;
-    }
-  }
-  async verifyResetToken(token: string): Promise<ResetTokenDocument | null> {
-    return await this.resetTokenModel.findOneAndDelete({ token }).exec();
-  }
+  //     const savedResetToken = await newResetToken.save();
+  //     console.log('Saved Reset Token Document:', savedResetToken);
+  //     return resetToken;
+  //   }
+  // }
+  // async verifyResetToken(token: string): Promise<ResetTokenDocument | null> {
+  //   return await this.resetTokenModel.findOneAndDelete({ token }).exec();
+  // }
 }
+

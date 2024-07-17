@@ -10,7 +10,7 @@ import { ResetToken, ResetTokenSchema } from './resetToken.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema },{ name: ResetToken.name, schema: ResetTokenSchema }]),
+  //  MongooseModule.forFeature([{ name: User.name, schema: UserSchema },{ name: ResetToken.name, schema: ResetTokenSchema }]),
     ClientsModule.register([
       {
         name: 'NATS',
