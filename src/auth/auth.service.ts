@@ -12,3 +12,4 @@ export class AuthService {
         return bcrypt.compare ( password, hashed_password)
     }
 }
+ 

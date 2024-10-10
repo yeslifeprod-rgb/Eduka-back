@@ -33,7 +33,7 @@ $ npm install
 ```
 
 ## Running the app
-
+ # PRE REQUISITE: START DOCKER and MariaDb Containeer
 ```bash
 # development
 $ npm run start
