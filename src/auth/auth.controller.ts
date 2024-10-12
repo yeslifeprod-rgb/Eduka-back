@@ -23,7 +23,7 @@ export class AuthController {
   ) {}
 
   @Post('signin')
-  async signin(@Body() data: SignInUserDto) {
+  async signin(@Body() data: SignInUserDto): Promise<{ access_token: string }> {
     // does email exists ? (we need to have a user. First we need to declare a cont user to test an email and password)
     const user = await this.userService.findUserByEmail(data.email);
     if (!user) {
@@ -31,17 +31,24 @@ export class AuthController {
     }
 
     // is password correct ?
-    const isValid = await this.authService.compare(
+    const isPasswordMatching = await this.authService.compare(
       data.password,
       user.password,
     );
-    if (!isValid) {
-      throw new HttpException("credentials psw don't match", 401);
+    if (!isPasswordMatching) {
+      throw new HttpException("Password doesn't match", 401);
     }
-    // token creation
-    const payload = { sub: user.id, username: user.email };
-
+    // Token payload creation
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      roles: user.roles.map((userRole) => userRole.role.name),
+      status: user.status,
+      created_at: user.created_at,
+      updated_at: user.updated_at,
+    };
     return {
+      //Generate JWT Token
       access_token: await this.jwtService.signAsync(payload, {
         secret: process.env.SECRET_KEY,
         expiresIn: '30min',
