@@ -1,40 +1,43 @@
 import {
-    CanActivate,
-    ExecutionContext,
-    Injectable,
-    UnauthorizedException,
-  } from '@nestjs/common';
-  import { JwtService } from '@nestjs/jwt';
-  import { Request } from 'express';
-  
-  @Injectable()
-  export class AuthGuard implements CanActivate {
-    constructor(private jwtService: JwtService) {}
-  
-    async canActivate(context: ExecutionContext): Promise<boolean> {
-      const request = context.switchToHttp().getRequest();
-      const token = this.extractTokenFromHeader(request);
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { BaseJWT } from './baseJwt';
 
-      if (!token) {
-        throw new UnauthorizedException();
-      }
-      try {
-        const payload = await this.jwtService.verifyAsync(
-          token,
-          {
-            secret: process.env.SECRET_KEY
-          }
-        );
-     
-        request['user'] = payload;
-      } catch {
-        throw new UnauthorizedException();
-      }
-      return true;
+@Injectable()
+export class AuthGuard extends BaseJWT implements CanActivate {
+  constructor(private jwtService: JwtService) {
+    super();
+  }
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const { token, request } = this._extractTokenFromHeader(context);
+
+    if (!token) {
+      console.log('Authorization header missing');
+      throw new UnauthorizedException('Authorization header missing');
     }
-  
-    private extractTokenFromHeader(request: Request): string | undefined {
-      const [type, token] = request.headers.authorization?.split(' ') ?? [];
-      return type === 'Bearer' ? token : undefined;
+
+    try {
+      console.log('Attempting to verify token:', token);
+      const payload = await this.jwtService.verifyAsync(token, {
+        secret: process.env.SECRET_KEY,
+      });
+
+      console.log('Token verified successfully. Payload:', payload);
+
+      // Assigner le payload à la propriété 'user' de l'objet request pour un accès ultérieur dans les route handlers
+      request.user = payload;
+
+      console.log('User assigned to request:', request.user);
+
+      return true;
+    } catch (error) {
+      console.error('Error verifying token:', error);
+      throw new UnauthorizedException('Invalid token');
     }
   }
+}

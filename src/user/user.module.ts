@@ -1,13 +1,31 @@
 import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { PrismaService } from 'prisma/prisma.service';
+import { ProfileService } from 'src/user/profile.service';
+import { PaginatorUtils } from 'src/utils/paginator.utils';
+import { ResetToken, ResetTokenSchema } from './resetToken.schema';
 import { UserController } from './user.controller';
-import { PrismaModule } from 'prisma/prisma.module';
-import { ProfileService } from './profile.service';
+import { User, UserSchema } from './user.schema';
+import { UserService } from './user.service';
 
 @Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: ResetToken.name, schema: ResetTokenSchema },
+    ]),
+    // ClientsModule.register([
+    //   {
+    //     name: 'NATS',
+    //     transport: Transport.NATS,
+    //     options: {
+    //       servers: ['nats://localhost:4222'],
+    //     },
+    //   },
+    // ]),
+  ],
   controllers: [UserController],
-  providers: [UserService, ProfileService],
-  imports: [PrismaModule],
-  exports: [UserService]
+  providers: [UserService, PrismaService, ProfileService, PaginatorUtils],
+  exports: [UserService],
 })
 export class UserModule {}

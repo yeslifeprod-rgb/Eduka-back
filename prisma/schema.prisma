@@ -34,9 +34,10 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
   profil Profile? 
+  refreshToken String? @db.VarChar(1024)
   messages Message[]
-  userHasDiscipline UserHasDisciplines[] //@dev pluriel
-  userHasSchool UserHasSchool[] //@dev
+  userHasDisciplines UserHasDisciplines[] 
+  userHasSchool UserHasSchool[] 
   children Children[]
   roles RoleHasUser[]
   events Event[]
@@ -131,11 +132,19 @@ model Address {
   address_line String
   zip_code     String
   city         String
+  location     Json
   school     School?
   school_id  String?  @unique
-  profil Profile[] //@dev one to one
-  event  Event[] //@dev one to one
+  profil Profile[]
+  event  Event[] 
 }
+
+
+// {
+//   "type": "GEOLOC",
+//   "lat": 0,
+//   "long": 0
+// }
 
 model RoleHasUser {
   role_id String
@@ -166,6 +175,7 @@ model Event {
   description String
   start_date  DateTime
   end_date    DateTime
+  photo       String?
   guest_limit Int
   is_public   Boolean
   category    String  // @enum
@@ -185,6 +195,7 @@ model Event {
 enum UserStatus {
   CONNECTED
   DISCONNECTED
+  SUSPENDED
 }
 enum EventTagName {
   CAGNOTTE
