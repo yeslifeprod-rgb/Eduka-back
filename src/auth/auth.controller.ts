@@ -1,11 +1,18 @@
-import { Body, Controller, HttpException, Post, UnauthorizedException, Request, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  HttpException,
+  Post,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+
+import { SignInUserDto } from 'src/auth/dto/signin-user.dto';
+
+import SignInUserInterface from 'src/interfaces/signInUser';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
-import { JwtService } from "@nestjs/jwt";
-import { SignInUserDto } from 'src/auth/dto/signin-user.dto';
-import SignInUserInterface from "../interfaces/signInUser";
-import { AuthRefreshGuard } from "../guards/refresh.jwt.guard";
-import * as bcrypt from 'bcrypt';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +29,7 @@ export class AuthController {
     if (!user) {
       throw new HttpException("credentials don't match", 401);
     }
-    
+
     // is password correct ?
     const isValid = await this.authService.compare(
       data.password,
@@ -92,15 +99,12 @@ export class AuthController {
         sub: user.id,
         email: user.email,
         roles: user.roles.map((userRole) => userRole.role.name),
-        photo: user.profil?.photo || '',
-        firstname: user.profil?.firstname || '',
-        lastname: user.profil?.lastname || '',
       };
 
       // Signer le token d'actualisation (refresh token)
       const refresh_token = await this.jwtService.signAsync(payload, {
         secret: process.env.SECRET_KEY_REFRESH,
-        expiresIn: '1d',
+        expiresIn: '8h',
       });
 
       // Mettre à jour le champ `refreshToken` dans la base de données
@@ -131,9 +135,6 @@ export class AuthController {
         email: user.email,
         status: user.status,
         role: user.roles[0]?.role.name,
-        photo: user.profil?.photo || '',
-        firstname: user.profil?.firstname || '',
-        lastname: user.profil?.lastname || '',
       };
 
       // réponse au frontend
@@ -146,50 +147,6 @@ export class AuthController {
     } catch (error) {
       console.error('Error during signIn:', error);
       throw error;
-    }
-  }
-  @UseGuards(AuthRefreshGuard)
-  @Post('refresh_token')
-  async refreshToken(
-    @Request() req: any, // Accédez à la requête
-  ): Promise<{ accessToken: string }> {
-    try {
-      // Extrait le refreshToken du header Authorization
-      const authorizationHeader = req.headers.authorization;
-      const token = authorizationHeader?.split(' ')[1]; // Extraire le token du format "Bearer token"
-
-      if (!token) {
-        throw new UnauthorizedException('No refresh token provided');
-      }
-
-      // Décode et vérifie le refreshToken
-      const decoded = this.jwtService.verify(token, {
-        secret: process.env.SECRET_KEY_REFRESH,
-      });
-      console.log('🚀 ~ AuthController ~ refreshToken ~ decoded:', decoded);
-
-      // Trouve l'utilisateur associé au refreshToken
-      const user = await this.userService.findUserById(decoded.sub);
-      if (!user || user.refreshToken !== token) {
-        throw new UnauthorizedException('Invalid refresh token');
-      }
-
-      // Crée un nouveau accessToken
-      const payload = {
-        sub: user.id,
-        email: user.email,
-        roles: user.roles.map((userRole) => userRole.role.name),
-      };
-
-      const accessToken = await this.jwtService.signAsync(payload, {
-        secret: process.env.SECRET_KEY,
-        expiresIn: '30m',
-      });
-
-      return { accessToken };
-    } catch (error) {
-      console.error('Error during refreshToken:', error);
-      throw new UnauthorizedException('Failed to refresh token');
     }
   }
 }
