@@ -1,21 +1,11 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  Post,
-  Request,
-  UnauthorizedException,
-  UseGuards,
-} from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-
-import { SignInUserDto } from 'src/auth/dto/signin-user.dto';
-
-import { AuthRefreshGuard } from 'src/guards/refresh.jwt.guard';
-import SignInUserInterface from 'src/interfaces/signInUser';
+import { Body, Controller, HttpException, Post, UnauthorizedException, Request, UseGuards } from "@nestjs/common";
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
+import { JwtService } from "@nestjs/jwt";
+import { SignInUserDto } from 'src/auth/dto/signin-user.dto';
+import SignInUserInterface from "../interfaces/signInUser";
+import { AuthRefreshGuard } from "../guards/refresh.jwt.guard";
+import * as bcrypt from 'bcrypt';
 
 @Controller('auth')
 export class AuthController {
@@ -32,7 +22,7 @@ export class AuthController {
     if (!user) {
       throw new HttpException("credentials don't match", 401);
     }
-
+    
     // is password correct ?
     const isValid = await this.authService.compare(
       data.password,

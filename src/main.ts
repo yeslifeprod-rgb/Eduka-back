@@ -5,8 +5,14 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+//  app.enableCors();
+  app.enableCors({
+    origin: "http://localhost:5173", // Autoriser seulement cette origine
+    methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'],
+    allowedHeaders: "*",
+    credentials: true, // Activer les cookies CORS (si nécessaire)
+  });
 
   const config = new DocumentBuilder()
     .setTitle('alt-bootcamp')
@@ -17,15 +23,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apiDoc', app, document);
 
-  // Configurer CORS
-  app.enableCors({
-    origin: process.env.ACCESCORS, // Autoriser seulement cette origine
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, // Activer les cookies CORS (si nécessaire)
-  });
-
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(3001);
 }
 
 bootstrap();
