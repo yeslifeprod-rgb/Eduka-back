@@ -3,11 +3,13 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
+  Put,
   Query,
   Request,
   UseGuards,
-} from '@nestjs/common';
+} from "@nestjs/common";
 import { RoleName } from '@prisma/client';
 import { Roles } from 'src/auth/roles.decorator';
 import { AuthGuard } from 'src/guards/jwt.guard';
@@ -15,8 +17,10 @@ import { RolesGuard } from 'src/guards/role.guard';
 import { ChangePasswordDto } from './dto/change-password-user.dto';
 import { ProfileService } from './profile.service';
 import { UserService } from './user.service';
-import { profileCard } from '../interfaces/profileCard';
-import { profileInterface } from "../interfaces/profileInterface";
+import { profileInterface } from '../interfaces/profileInterface';
+import { AuthenticatedRequest } from '../interfaces/authRequest';
+import { ResponseWithoutDataInterface } from '../utils/response.utils';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Controller('user')
 export class UserController {
@@ -24,7 +28,6 @@ export class UserController {
     private readonly userService: UserService,
     private readonly profileService: ProfileService,
   ) {}
-
 
   @Get('profile')
   @Roles(RoleName.PARENT)
@@ -39,6 +42,33 @@ export class UserController {
       throw new BadRequestException('User ID not found in request');
     }
     return await this.profileService.findDetailsProfileById(userId);
+  }
+
+  @Put('profile/:id')
+  @Roles(RoleName.PARENT)
+  @UseGuards(AuthGuard, RolesGuard)
+  async updateProfile(
+    @Param('id') id: string,
+    @Body() updateProfileDto: UpdateProfileDto,
+    @Request() req: AuthenticatedRequest,
+  ): Promise<ResponseWithoutDataInterface> {
+    console.log(req.user.sub);
+    const result = await this.profileService.update(
+      id,
+      updateProfileDto,
+      req.user.sub,
+    );
+
+    if (!result) {
+      throw new BadRequestException(
+        `profile with id ${id} not found or not authorized to update`,
+      );
+    }
+
+    return {
+      status: 'success',
+      message: `Successfully updated profile with id ${id}`,
+    };
   }
 
   // change password at first connexion

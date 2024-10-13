@@ -3,6 +3,8 @@ import { PrismaService } from 'prisma/prisma.service';
 import { profileCard } from 'src/interfaces/ProfileCard';
 import { profileInterface } from 'src/interfaces/profileInterface';
 import { UserService } from './user.service';
+import { UpdateProfileDto } from './dto/update-profile.dto';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ProfileService {
@@ -10,6 +12,90 @@ export class ProfileService {
     private prisma: PrismaService,
     private userService: UserService,
   ) {}
+
+  async update(
+    profileId: string,
+    updateProfileDto: UpdateProfileDto,
+    userId: string,
+  ): Promise<boolean> {
+    try {
+      // Start a transaction to update the profile and children atomically
+      await this.prisma.$transaction(async (prisma) => {
+        // 1. Update the profile
+        const profile = await prisma.profile.updateMany({
+          where: {
+            id: profileId,
+            userId: userId, // Ensure only the owner can update
+          },
+          data: {
+            firstname: updateProfileDto.firstname,
+            lastname: updateProfileDto.lastname,
+            photo: updateProfileDto.photo,
+            address_id: updateProfileDto.address_id,
+          },
+        });
+
+        if (!profile.count) {
+          throw new Error('Profile not found or not authorized to update');
+        }
+
+        // 2. Update children
+        const existingChildren = await prisma.children.findMany({
+          where: { user_id: userId },
+        });
+
+        // Map the existing children by ID for quick lookup
+        const existingChildrenMap = existingChildren.reduce((map, child) => {
+          map[child.id] = child;
+          return map;
+        }, {});
+
+        // Loop through the updated children data
+        for (const childDto of updateProfileDto.children) {
+          if (childDto.id) {
+            // If the child ID exists, update the child
+            if (existingChildrenMap[childDto.id]) {
+              await prisma.children.update({
+                where: { id: childDto.id },
+                data: {
+                  name: childDto.name,
+                  birthday: new Date(childDto.birthday), // Convert to Date
+                  class: childDto.class,
+                },
+              });
+            }
+          } else {
+            // If no ID, create a new child
+            await prisma.children.create({
+              data: {
+                name: childDto.name,
+                birthday: new Date(childDto.birthday), // Convert to Date
+                class: childDto.class,
+                user_id: userId, // Directly assign user_id
+                school_id: null, // If applicable, handle this or provide a default value
+              } as Prisma.ChildrenUncheckedCreateInput, // Explicitly cast to ChildrenUncheckedCreateInput
+            });
+          }
+        }
+
+        // 3. Optionally: Remove any children that are no longer in the update data
+        const updatedChildIds = updateProfileDto.children
+          .filter((child) => child.id)
+          .map((child) => child.id);
+        await prisma.children.deleteMany({
+          where: {
+            user_id: userId,
+            id: { notIn: updatedChildIds },
+          },
+        });
+      });
+
+      return true; // Successfully updated
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      return false; // Update failed
+    }
+  }
 
   async findProfilesByUserSchool(
     paginator: {
