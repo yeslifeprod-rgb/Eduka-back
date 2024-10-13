@@ -5,6 +5,7 @@ export interface profileInterface {
   profil_picture: string; // Renomme si nécessaire pour correspondre au champ photo
   address: { address_line_1: string; zip_code: string; city: string };
   created_at: Date;
+  email: string;
   children: Array<{
     id: string;
     name: string;

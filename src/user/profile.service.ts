@@ -62,6 +62,7 @@ export class ProfileService {
         user: {
           select: {
             created_at: true, // Sélection du champ createdAt depuis User
+            email: true,
           },
         },
       },
@@ -84,6 +85,7 @@ export class ProfileService {
         user: {
           select: {
             created_at: true, // Sélection du champ createdAt depuis User
+            email: true,
           },
         },
       },
@@ -101,6 +103,7 @@ export class ProfileService {
     photo: string | null;
     user: {
       created_at: Date;
+      email: string;
     };
   }): profileCard {
     return {
@@ -109,6 +112,7 @@ export class ProfileService {
       lastname: profile.lastname,
       profil_picture: profile.photo || '',
       created_at: profile.user.created_at, // Utilisation de createdAt depuis User
+      email: profile.user.email,
     };
   }
   async findDetailsProfileById(id: string): Promise<profileInterface> {
@@ -125,6 +129,7 @@ export class ProfileService {
         user: {
           select: {
             created_at: true,
+            email: true,
             children: {
               // Accéder aux enfants via l'utilisateur
               select: {
@@ -159,6 +164,7 @@ export class ProfileService {
     };
     user: {
       created_at: Date;
+      email: string;
       children: Array<{
         id: string;
         name: string;
@@ -174,6 +180,7 @@ export class ProfileService {
       lastname: profile.lastname,
       profil_picture: profile.photo || '',
       created_at: profile.user.created_at,
+      email: profile.user.email,
       address: {
         address_line_1: profile.address.address_line,
         city: profile.address.city,
