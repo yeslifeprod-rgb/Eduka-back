@@ -15,6 +15,8 @@ import { RolesGuard } from 'src/guards/role.guard';
 import { ChangePasswordDto } from './dto/change-password-user.dto';
 import { ProfileService } from './profile.service';
 import { UserService } from './user.service';
+import { profileCard } from '../interfaces/profileCard';
+import { profileInterface } from "../interfaces/profileInterface";
 
 @Controller('user')
 export class UserController {
@@ -22,6 +24,23 @@ export class UserController {
     private readonly userService: UserService,
     private readonly profileService: ProfileService,
   ) {}
+
+
+  @Get('profile')
+  @Roles(RoleName.PARENT)
+  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard)
+  async getProfile(@Request() req: any): Promise<profileInterface> {
+    const userId = req.user.sub;
+    console.log('🚀 ~ UserController ~ getProfile ~ userId:', userId);
+
+    if (!userId) {
+      console.log('User ID not found in request');
+      throw new BadRequestException('User ID not found in request');
+    }
+    return await this.profileService.findDetailsProfileById(userId);
+  }
+
   // change password at first connexion
   @Post('change-password')
   async changePassword(@Body() ChangePasswordDto: ChangePasswordDto) {
