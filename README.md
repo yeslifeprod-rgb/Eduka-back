@@ -84,16 +84,16 @@ Cette section résume simplement les contributions visibles dans l’historique 
 - Historique analysé : **96 commits**
 - Merges détectés : **13**
 
-> Note : la présence de chaque personne dépend de l’auteur Git enregistré dans l’historique. Si un travail a été commit avec une autre identité GitLab, il apparaît sous cette identité.
+> Note : les chiffres viennent de l’auteur Git enregistré dans l’historique. Une merge request GitLab ou un merge peut apparaître sous la personne qui a validé le merge, même si le travail vient d’une autre branche.
 
 ### Contributeurs
 
-| Personne | Rôle visible dans le projet | Branches principales | Merges |
-|---|---|---|---:|
-| Julien | Back-end principal : API, logique métier, modules et intégrations serveur. | `ania_develop`, `develop`, `tr201-install-multer`, `devops` | `9` |
-| Ania | Back-end : corrections, logique applicative et participation aux modules métier. | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
-| Ilyes | Documentation, mise en forme GitHub et maintenance du dépôt. | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
-| Florian | Contribution ponctuelle back-end. | `tdd` | `0` |
+| Personne | Rôle visible dans le projet | Commits | Branches principales | Merges Git |
+|---|---|---:|---|---:|
+| Julien | Back-end principal : API, logique métier, modules et intégrations serveur. | `68` | `ania_develop`, `develop`, `tr201-install-multer`, `devops` | `9` |
+| Ania | Back-end : corrections, logique applicative et participation aux modules métier. | `19` | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
+| Ilyes | Back-end : modification de profil, UserController, DTO/update et maintenance du dépôt. | `8` | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
+| Florian | Contribution ponctuelle back-end. | `1` | `tdd` | `0` |
 
 ### Fonctionnalités / branches clés
 
@@ -117,7 +117,7 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | `tr-292-Modifier-un-profil` | Authentification et rôles | Julien, Ilyes |
 | `main` | Authentification et rôles | Ania, Julien |
 
-### Merges importants
+### Merges Git détectés
 
 | Date | Auteur | Branche / sujet |
 |---|---|---|
