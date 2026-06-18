@@ -84,7 +84,7 @@ Cette section résume simplement les contributions visibles dans l’historique 
 - Historique analysé : **96 commits**
 - Merges détectés : **13**
 
-> Note : vérification faite directement depuis l’historique GitLab/Git. Ilyes a bien des commits back sur les branches profil. Les merge commits Git enregistrés ne sont pas signés par Ilyes : ils apparaissent sous la personne qui a validé le merge dans GitLab/Git.
+> Note : vérification faite directement depuis l’historique GitLab/Git. Les contributions back sur les branches profil sont bien confirmées. Les merge commits Git enregistrés apparaissent sous la personne qui a validé le merge dans GitLab/Git.
 
 ### Contributeurs
 
