@@ -84,53 +84,55 @@ Cette section résume simplement les contributions visibles dans l’historique 
 - Historique analysé : **96 commits**
 - Merges détectés : **13**
 
+> Note : la présence de chaque personne dépend de l’auteur Git enregistré dans l’historique. Si un travail a été commit avec une autre identité GitLab, il apparaît sous cette identité.
+
 ### Contributeurs
 
 | Personne | Rôle visible dans le projet | Branches principales | Merges |
 |---|---|---|---:|
-| Julien TANGUY | Back-end principal : API, logique métier, modules et intégrations serveur. | `ania_develop`, `develop`, `tr201-install-multer`, `devops` | `9` |
-| Ania Cousin | Back-end : corrections, logique applicative et participation aux modules métier. | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
-| yeslifeprod-rgb | Documentation, mise en forme GitHub et maintenance du dépôt. | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
+| Julien | Back-end principal : API, logique métier, modules et intégrations serveur. | `ania_develop`, `develop`, `tr201-install-multer`, `devops` | `9` |
+| Ania | Back-end : corrections, logique applicative et participation aux modules métier. | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
+| Yesdevjr | Documentation, mise en forme GitHub et maintenance du dépôt. | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
 | Florian | Contribution ponctuelle back-end. | `tdd` | `0` |
 
 ### Fonctionnalités / branches clés
 
 | Branche | Fonctionnalité lisible | Contributeurs principaux |
 |---|---|---|
-| `ania_develop` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `develop` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr201-install-multer` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `devops` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tdd` | Authentification et rôles | Julien TANGUY, Ania Cousin, Florian |
-| `tr-mise-en-place-de-mongodb` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `correction-all-events` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr-106-tous-les-evenements` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr-000-amélioration-singin` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr-294-creer-un-middleware-role` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr-cablage-singin` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr-268-Modifier-un-profil` | Authentification et rôles | yeslifeprod-rgb, Julien TANGUY |
-| `recup-tr-34-Login-back` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `tr-293-Modifier-un-profil` | Authentification et rôles | Julien TANGUY, yeslifeprod-rgb |
-| `tr-157-page_trombinoscope` | Authentification et rôles | Julien TANGUY |
-| `tr-292-Modifier-un-profil` | Authentification et rôles | Julien TANGUY, yeslifeprod-rgb |
-| `main` | Authentification et rôles | Ania Cousin, Julien TANGUY |
+| `ania_develop` | Authentification et rôles | Julien, Ania |
+| `develop` | Authentification et rôles | Julien, Ania |
+| `tr201-install-multer` | Authentification et rôles | Julien, Ania |
+| `devops` | Authentification et rôles | Julien, Ania |
+| `tdd` | Authentification et rôles | Julien, Ania, Florian |
+| `tr-mise-en-place-de-mongodb` | Authentification et rôles | Julien, Ania |
+| `correction-all-events` | Authentification et rôles | Julien, Ania |
+| `tr-106-tous-les-evenements` | Authentification et rôles | Julien, Ania |
+| `tr-000-amélioration-singin` | Authentification et rôles | Julien, Ania |
+| `tr-294-creer-un-middleware-role` | Authentification et rôles | Julien, Ania |
+| `tr-cablage-singin` | Authentification et rôles | Julien, Ania |
+| `tr-268-Modifier-un-profil` | Authentification et rôles | Yesdevjr, Julien |
+| `recup-tr-34-Login-back` | Authentification et rôles | Julien, Ania |
+| `tr-293-Modifier-un-profil` | Authentification et rôles | Julien, Yesdevjr |
+| `tr-157-page_trombinoscope` | Authentification et rôles | Julien |
+| `tr-292-Modifier-un-profil` | Authentification et rôles | Julien, Yesdevjr |
+| `main` | Authentification et rôles | Ania, Julien |
 
 ### Merges importants
 
 | Date | Auteur | Branche / sujet |
 |---|---|---|
-| 2024-10-12 | Ania Cousin | `origin/develop` |
-| 2024-10-08 | Julien TANGUY | `tr201-install-multer` |
-| 2024-07-17 | Julien TANGUY | `develop` |
-| 2024-06-24 | Julien TANGUY | `tr-157-page_trombinoscope` |
-| 2024-06-24 | Julien TANGUY | `develop` |
-| 2024-06-24 | Julien TANGUY | `commit avec partie Ania` |
-| 2024-06-24 | Julien TANGUY | `init` |
-| 2024-06-24 | Julien TANGUY | `origin/recup-tr-34-Login-back` |
-| 2024-06-22 | Ania Cousin | `develop` |
-| 2024-06-22 | Ania Cousin | `tr-34-Login-back` |
-| 2024-06-20 | Ania Cousin | `develop` |
-| 2024-05-30 | Julien TANGUY | `init` |
+| 2024-10-12 | Ania | `origin/develop` |
+| 2024-10-08 | Julien | `tr201-install-multer` |
+| 2024-07-17 | Julien | `develop` |
+| 2024-06-24 | Julien | `tr-157-page_trombinoscope` |
+| 2024-06-24 | Julien | `develop` |
+| 2024-06-24 | Julien | `commit avec partie Ania` |
+| 2024-06-24 | Julien | `init` |
+| 2024-06-24 | Julien | `origin/recup-tr-34-Login-back` |
+| 2024-06-22 | Ania | `develop` |
+| 2024-06-22 | Ania | `tr-34-Login-back` |
+| 2024-06-20 | Ania | `develop` |
+| 2024-05-30 | Julien | `init` |
 
 > Note : les noms sont regroupés quand plusieurs identités Git correspondent à la même personne.
 <!-- CONTRIBUTIONS-GITLAB:END -->
