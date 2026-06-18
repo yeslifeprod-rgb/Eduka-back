@@ -81,7 +81,7 @@ Cette section résume simplement les contributions visibles dans l’historique 
 
 - Projet : **Eduka Back**
 - Périmètre : **API / back-end applicatif**
-- Historique analysé : **97 commits**
+- Historique analysé : **96 commits**
 - Merges détectés : **13**
 
 ### Contributeurs
@@ -89,10 +89,9 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | Personne | Rôle visible dans le projet | Branches principales | Merges |
 |---|---|---|---:|
 | Julien TANGUY | Back-end principal : API, logique métier, modules et intégrations serveur. | `ania_develop`, `develop`, `tr201-install-multer`, `devops` | `9` |
-| Ania Cousin | Back-end : corrections, logique applicative et participation aux modules métier. | `ania_develop`, `develop`, `correction-all-events`, `devops` | `4` |
+| Ania Cousin | Back-end : corrections, logique applicative et participation aux modules métier. | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
 | yeslifeprod-rgb | Documentation, mise en forme GitHub et maintenance du dépôt. | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
 | Florian | Contribution ponctuelle back-end. | `tdd` | `0` |
-| Yesdevjr | Développement applicatif | `HEAD -> origin/main`, `main` | `0` |
 
 ### Fonctionnalités / branches clés
 
@@ -109,13 +108,12 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | `tr-000-amélioration-singin` | Authentification et rôles | Julien TANGUY, Ania Cousin |
 | `tr-294-creer-un-middleware-role` | Authentification et rôles | Julien TANGUY, Ania Cousin |
 | `tr-cablage-singin` | Authentification et rôles | Julien TANGUY, Ania Cousin |
-| `HEAD -> origin/main` | Authentification et rôles | Ania Cousin, Julien TANGUY, Yesdevjr |
 | `tr-268-Modifier-un-profil` | Authentification et rôles | yeslifeprod-rgb, Julien TANGUY |
 | `recup-tr-34-Login-back` | Authentification et rôles | Julien TANGUY, Ania Cousin |
 | `tr-293-Modifier-un-profil` | Authentification et rôles | Julien TANGUY, yeslifeprod-rgb |
 | `tr-157-page_trombinoscope` | Authentification et rôles | Julien TANGUY |
 | `tr-292-Modifier-un-profil` | Authentification et rôles | Julien TANGUY, yeslifeprod-rgb |
-| `main` | Authentification et rôles | Ania Cousin, Julien TANGUY, Yesdevjr |
+| `main` | Authentification et rôles | Ania Cousin, Julien TANGUY |
 
 ### Merges importants
 
