@@ -92,7 +92,7 @@ Cette section résume simplement les contributions visibles dans l’historique 
 |---|---|---|---:|
 | Julien | Back-end principal : API, logique métier, modules et intégrations serveur. | `ania_develop`, `develop`, `tr201-install-multer`, `devops` | `9` |
 | Ania | Back-end : corrections, logique applicative et participation aux modules métier. | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
-| Yesdevjr | Documentation, mise en forme GitHub et maintenance du dépôt. | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
+| Ilyes | Documentation, mise en forme GitHub et maintenance du dépôt. | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
 | Florian | Contribution ponctuelle back-end. | `tdd` | `0` |
 
 ### Fonctionnalités / branches clés
@@ -110,11 +110,11 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | `tr-000-amélioration-singin` | Authentification et rôles | Julien, Ania |
 | `tr-294-creer-un-middleware-role` | Authentification et rôles | Julien, Ania |
 | `tr-cablage-singin` | Authentification et rôles | Julien, Ania |
-| `tr-268-Modifier-un-profil` | Authentification et rôles | Yesdevjr, Julien |
+| `tr-268-Modifier-un-profil` | Authentification et rôles | Ilyes, Julien |
 | `recup-tr-34-Login-back` | Authentification et rôles | Julien, Ania |
-| `tr-293-Modifier-un-profil` | Authentification et rôles | Julien, Yesdevjr |
+| `tr-293-Modifier-un-profil` | Authentification et rôles | Julien, Ilyes |
 | `tr-157-page_trombinoscope` | Authentification et rôles | Julien |
-| `tr-292-Modifier-un-profil` | Authentification et rôles | Julien, Yesdevjr |
+| `tr-292-Modifier-un-profil` | Authentification et rôles | Julien, Ilyes |
 | `main` | Authentification et rôles | Ania, Julien |
 
 ### Merges importants
