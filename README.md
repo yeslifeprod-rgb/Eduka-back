@@ -84,7 +84,7 @@ Cette section résume simplement les contributions visibles dans l’historique 
 - Historique analysé : **96 commits**
 - Merges détectés : **13**
 
-> Note : les chiffres viennent de l’auteur Git enregistré dans l’historique. Une merge request GitLab ou un merge peut apparaître sous la personne qui a validé le merge, même si le travail vient d’une autre branche.
+> Note : vérification faite directement depuis l’historique GitLab/Git. Ilyes a bien des commits back sur les branches profil. Les merge commits Git enregistrés ne sont pas signés par Ilyes : ils apparaissent sous la personne qui a validé le merge dans GitLab/Git.
 
 ### Contributeurs
 
@@ -94,6 +94,15 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | Ania | Back-end : corrections, logique applicative et participation aux modules métier. | `19` | `ania_develop`, `main`, `develop`, `correction-all-events` | `4` |
 | Ilyes | Back-end : modification de profil, UserController, DTO/update et maintenance du dépôt. | `8` | `tr-268-Modifier-un-profil`, `tr-293-Modifier-un-profil`, `tr-292-Modifier-un-profil` | `0` |
 | Florian | Contribution ponctuelle back-end. | `1` | `tdd` | `0` |
+
+### Focus Ilyes — back-end
+
+| Élément | Détail |
+|---|---|
+| Commits back détectés | `8` |
+| Branches | `tr-268-Modifier-un-profil`, `tr-292-Modifier-un-profil`, `tr-293-Modifier-un-profil` |
+| Fonctionnalités | Modification de profil, `UserController`, DTO/update profil |
+| Merges Git signés Ilyes | `0` dans l’historique Git importé |
 
 ### Fonctionnalités / branches clés
 
@@ -119,20 +128,22 @@ Cette section résume simplement les contributions visibles dans l’historique 
 
 ### Merges Git détectés
 
-| Date | Auteur | Branche / sujet |
-|---|---|---|
-| 2024-10-12 | Ania | `origin/develop` |
-| 2024-10-08 | Julien | `tr201-install-multer` |
-| 2024-07-17 | Julien | `develop` |
-| 2024-06-24 | Julien | `tr-157-page_trombinoscope` |
-| 2024-06-24 | Julien | `develop` |
-| 2024-06-24 | Julien | `commit avec partie Ania` |
-| 2024-06-24 | Julien | `init` |
-| 2024-06-24 | Julien | `origin/recup-tr-34-Login-back` |
-| 2024-06-22 | Ania | `develop` |
-| 2024-06-22 | Ania | `tr-34-Login-back` |
-| 2024-06-20 | Ania | `develop` |
-| 2024-05-30 | Julien | `init` |
+Tous les merge commits présents dans l’historique sont listés ici.
 
+| Date | Auteur Git du merge | Branche / sujet mergé | Commit |
+|---|---|---|---|
+| 2024-10-12 | Ania | `origin/develop` | `218efc7` |
+| 2024-10-08 | Julien | `tr201-install-multer` | `ddadc26` |
+| 2024-07-17 | Julien | `develop` | `aa8cfbc` |
+| 2024-06-24 | Julien | `tr-157-page_trombinoscope` | `767206f` |
+| 2024-06-24 | Julien | `develop` | `318169a` |
+| 2024-06-24 | Julien | `commit avec partie Ania` | `aef96a8` |
+| 2024-06-24 | Julien | `init` | `0ff916a` |
+| 2024-06-24 | Julien | `origin/recup-tr-34-Login-back` | `710214d` |
+| 2024-06-22 | Ania | `develop` | `97b1a50` |
+| 2024-06-22 | Ania | `tr-34-Login-back` | `d189f12` |
+| 2024-06-20 | Ania | `develop` | `bd8a915` |
+| 2024-05-30 | Julien | `init` | `6676c67` |
+| 2024-05-30 | Julien | `main` | `aba9b67` |
 > Note : les noms sont regroupés quand plusieurs identités Git correspondent à la même personne.
 <!-- CONTRIBUTIONS-GITLAB:END -->
