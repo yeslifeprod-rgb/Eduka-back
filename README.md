@@ -104,27 +104,6 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | Fonctionnalités | Modification de profil, `UserController`, DTO/update profil |
 | Merges Git signés Ilyes | `0` dans l’historique Git importé |
 
-### Fonctionnalités / branches clés
-
-| Branche | Fonctionnalité lisible | Contributeurs principaux |
-|---|---|---|
-| `ania_develop` | Authentification et rôles | Julien, Ania |
-| `develop` | Authentification et rôles | Julien, Ania |
-| `tr201-install-multer` | Authentification et rôles | Julien, Ania |
-| `devops` | Authentification et rôles | Julien, Ania |
-| `tdd` | Authentification et rôles | Julien, Ania, Florian |
-| `tr-mise-en-place-de-mongodb` | Authentification et rôles | Julien, Ania |
-| `correction-all-events` | Authentification et rôles | Julien, Ania |
-| `tr-106-tous-les-evenements` | Authentification et rôles | Julien, Ania |
-| `tr-000-amélioration-singin` | Authentification et rôles | Julien, Ania |
-| `tr-294-creer-un-middleware-role` | Authentification et rôles | Julien, Ania |
-| `tr-cablage-singin` | Authentification et rôles | Julien, Ania |
-| `tr-268-Modifier-un-profil` | Authentification et rôles | Ilyes, Julien |
-| `recup-tr-34-Login-back` | Authentification et rôles | Julien, Ania |
-| `tr-293-Modifier-un-profil` | Authentification et rôles | Julien, Ilyes |
-| `tr-157-page_trombinoscope` | Authentification et rôles | Julien |
-| `tr-292-Modifier-un-profil` | Authentification et rôles | Julien, Ilyes |
-| `main` | Authentification et rôles | Ania, Julien |
 
 ### Merges Git détectés
 
