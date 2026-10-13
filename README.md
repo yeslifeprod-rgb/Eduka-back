@@ -1,81 +1,12 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# EDUKA — Back-end
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API développée avec NestJS et Node.js pour gérer les activités, les groupes et les échanges entre parents. Elle applique les règles métier et les contrôles d’accès, prend en charge l’authentification avec vérification d’e-mail et s’appuie sur Prisma et MySQL pour la gestion des données. Le back-end est exécuté dans un environnement Docker.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Le projet a été réalisé en équipe de quatre développeurs, accompagnés de deux leads.
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-
-<!-- CONTRIBUTIONS-GITLAB:START -->
 ## Contributions projet
 
-Cette section résume simplement les contributions visibles dans l’historique GitLab importé sur GitHub. Elle est pensée pour une lecture recruteur : qui a contribué, sur quelles parties, et quels merges existent.
+Cette section résume les contributions visibles dans l’historique GitLab importé sur GitHub.
 
 ### Vue rapide
 
@@ -83,8 +14,6 @@ Cette section résume simplement les contributions visibles dans l’historique 
 - Périmètre : **API / back-end applicatif**
 - Historique analysé : **96 commits**
 - Merges détectés : **13**
-
-> Note : vérification faite directement depuis l’historique GitLab/Git. Les contributions back sur les branches profil sont bien confirmées. Les merge commits Git enregistrés apparaissent sous la personne qui a validé le merge dans GitLab/Git.
 
 ### Contributeurs
 
@@ -104,10 +33,7 @@ Cette section résume simplement les contributions visibles dans l’historique 
 | Fonctionnalités | Modification de profil, `UserController`, DTO/update profil |
 | Merges Git signés Ilyes | `0` dans l’historique Git importé |
 
-
 ### Merges Git détectés
-
-Tous les merge commits présents dans l’historique sont listés ici.
 
 | Date | Auteur Git du merge | Branche / sujet mergé | Commit |
 |---|---|---|---|
@@ -124,5 +50,5 @@ Tous les merge commits présents dans l’historique sont listés ici.
 | 2024-06-20 | Ania | `develop` | `bd8a915` |
 | 2024-05-30 | Julien | `init` | `6676c67` |
 | 2024-05-30 | Julien | `main` | `aba9b67` |
-> Note : les noms sont regroupés quand plusieurs identités Git correspondent à la même personne.
-<!-- CONTRIBUTIONS-GITLAB:END -->
+
+> Les noms sont regroupés quand plusieurs identités Git correspondent à la même personne.
